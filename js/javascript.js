@@ -16,16 +16,16 @@ function disableButtons() {
     document.getElementById("Scissors").disabled = true;
 }
 
-function checkWinLossCondition(playerScore, computerScore, maxPoints) {
+function checkWinLossCondition(playerScore, computerScore, maxPoints, computerChoice) {
     if (playerScore == maxPoints) {
         let gameWinningStatement = document.createElement("p");
-        gameWinningStatement.textContent = `You've won the game!`;
+        gameWinningStatement.textContent = `Computer played ${computerChoice}. You've won the game!`;
         gameWinningStatement.style.color = "green"
         resultsContainer.insertBefore(gameWinningStatement, resultsContainer.firstElementChild);
         disableButtons();
     } else if (computerScore == maxPoints) {
         let gameLosingStatement = document.createElement("p");
-        gameLosingStatement.textContent = `You've lost the game!`;
+        gameLosingStatement.textContent = `Computer played ${computerChoice}. You've lost the game!`;
         gameLosingStatement.style.color = "red";
         resultsContainer.insertBefore(gameLosingStatement, resultsContainer.firstElementChild);
         disableButtons();
@@ -84,7 +84,7 @@ function playRound(e) {
     } else {
         createRoundResults(playerChoice); 
     }
-    checkWinLossCondition(playerScore, computerScore, maxPoints);
+    checkWinLossCondition(playerScore, computerScore, maxPoints, computerChoice);
 }
 
 alert("Play Rock-Paper-Scissors against the computer. First to 5 points wins!");

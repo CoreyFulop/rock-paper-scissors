@@ -1,0 +1,84 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    height: 100vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    min-height: 50vh;
+    padding: 50px;
+}
+
+button {
+    text-align:center;
+    font-size: 20px;
+    font-weight: 900;
+    height: 150px;
+    width: 150px;
+    border-radius: 12px;
+}
+
+
+.player-button#Rock {
+    background-color: burlywood;
+}
+
+.player-button#Paper {
+    background-color: gray;
+}
+
+.player-button#Scissors {
+    background-color: lightblue;
+}
+
+#Rock:hover,
+#Paper:hover,
+#Scissors:hover {
+    background-color: gold;
+    transition: 0.7s;
+}
+
+.output-header {
+    font-size: large;
+    display: flex;
+    justify-content: space-between;
+}
+
+.output-header div {
+    flex: 1;
+    text-align: center;
+}
+
+.output-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.player-scores-container,
+.round-results-container,
+.computer-scores-container {
+    text-align: center;
+    flex: 1;
+}
+
+.player-scores-container {
+    color: darkgreen;
+}
+
+.computer-scores-container {
+    color: darkred;
+}

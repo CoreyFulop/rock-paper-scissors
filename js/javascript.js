@@ -6,20 +6,27 @@ function getComputerChoice() {
     return shapes[Math.floor(Math.random() * 3)];
 }
 
-function playRound(playerSelection, computerSelection) {
-    let playerSelectionTitleCase = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
-    if ((playerSelectionTitleCase == "Rock" || computerSelection == "Rock") && (playerSelectionTitleCase == "Scissors" || computerSelection == "Scissors")) {
-        return (playerSelectionTitleCase == "Rock") ? "win" : "lose";
-    } else if ((playerSelectionTitleCase == "Scissors" || computerSelection == "Scissors") && (playerSelectionTitleCase == "Paper" || computerSelection == "Paper")) {
-        return (playerSelectionTitleCase == "Scissors") ? "win" : "lose";
-    } else if ((playerSelectionTitleCase == "Paper" || computerSelection == "Paper") && (playerSelectionTitleCase == "Rock" || computerSelection == "Rock")) {
-        return (playerSelectionTitleCase == "Paper") ? "win" : "lose";
+function playRound(e) {
+    let playerSelection = e.target.id;
+    let computerSelection = getComputerChoice();
+    if ((playerSelection == "Rock" || computerSelection == "Rock") && (playerSelection == "Scissors" || computerSelection == "Scissors")) {
+        (playerSelection == "Rock") ? console.log(`You win! ${playerSelection} beats ${computerSelection}.`) : console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+    } else if ((playerSelection == "Scissors" || computerSelection == "Scissors") && (playerSelection == "Paper" || computerSelection == "Paper")) {
+        (playerSelection == "Scissors") ? console.log(`You win! ${playerSelection} beats ${computerSelection}.`) : console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+    } else if ((playerSelection == "Paper" || computerSelection == "Paper") && (playerSelection == "Rock" || computerSelection == "Rock")) {
+        (playerSelection == "Paper") ? console.log(`You win! ${playerSelection} beats ${computerSelection}.`) : console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
     } else {
-        return "draw";
+        console.log("It's a draw.");
     }
 
 }
 
+const buttonsContainer = document.querySelector(".buttons-container");
+
+const playerButtons = Array.from(document.querySelectorAll(".player-button"));
+playerButtons.forEach(playerButton => playerButton.addEventListener("click", playRound));
+
+/*
 function game() {
     let playerScore = 0;
     let computerScore = 0;
@@ -54,3 +61,4 @@ function game() {
 }
 
 game();
+*/

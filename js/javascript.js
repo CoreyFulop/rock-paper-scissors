@@ -6,25 +6,45 @@ function getComputerChoice() {
     return shapes[Math.floor(Math.random() * 3)];
 }
 
+function createRoundResults(playerSelection, winningSelection, losingSelection) {
+    switch (playerSelection) {
+        case winningSelection:
+            let winningStatement = document.createElement("p");
+            winningStatement.textContent = `You win! ${winningSelection} beats ${losingSelection}.`
+            resultsContainer.insertBefore(winningStatement, resultsContainer.firstElementChild);
+            break;
+        case losingSelection:
+            let losingStatement = document.createElement("p");
+            losingStatement.textContent = `You lose! ${winningSelection} beats ${losingSelection}.`
+            resultsContainer.insertBefore(losingStatement, resultsContainer.firstElementChild);
+            break;
+        default:
+            let drawStatement = document.createElement("p");
+            drawStatement.textContent = "It's a draw.";
+            resultsContainer.insertBefore(drawStatement, resultsContainer.firstElementChild);
+            break;
+    }
+}
+
 function playRound(e) {
     let playerSelection = e.target.id;
     let computerSelection = getComputerChoice();
     if ((playerSelection == "Rock" || computerSelection == "Rock") && (playerSelection == "Scissors" || computerSelection == "Scissors")) {
-        (playerSelection == "Rock") ? console.log(`You win! ${playerSelection} beats ${computerSelection}.`) : console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+        createRoundResults(playerSelection, "Rock", "Scissors");
     } else if ((playerSelection == "Scissors" || computerSelection == "Scissors") && (playerSelection == "Paper" || computerSelection == "Paper")) {
-        (playerSelection == "Scissors") ? console.log(`You win! ${playerSelection} beats ${computerSelection}.`) : console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+        createRoundResults(playerSelection, "Scissors", "Paper");    
     } else if ((playerSelection == "Paper" || computerSelection == "Paper") && (playerSelection == "Rock" || computerSelection == "Rock")) {
-        (playerSelection == "Paper") ? console.log(`You win! ${playerSelection} beats ${computerSelection}.`) : console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+        createRoundResults(playerSelection, "Paper", "Rock"); 
     } else {
-        console.log("It's a draw.");
+        createRoundResults(playerSelection); 
     }
 
 }
 
-const buttonsContainer = document.querySelector(".buttons-container");
-
 const playerButtons = Array.from(document.querySelectorAll(".player-button"));
 playerButtons.forEach(playerButton => playerButton.addEventListener("click", playRound));
+
+const resultsContainer = document.querySelector(".results-container");
 
 /*
 function game() {
